@@ -26,21 +26,12 @@ Clone https://github.com/<you>/devin-demo-sentry-incident, start the server, and
 If you use Sentry, Devin can read the live issue (stack trace, breadcrumbs, event count) instead of finding the error in the logs, and comment the PR link back on the issue.
 
 1. Create a free [Sentry](https://sentry.io) project (platform: Node.js) and copy its DSN.
-2. Clone your copy and generate a real production-style incident from your laptop:
-
-   ```sh
-   git clone https://github.com/<you>/devin-demo-sentry-incident && cd devin-demo-sentry-incident
-   npm install
-   SENTRY_DSN=<your-dsn> npm start     # :4200
-   npm run traffic                     # in a second terminal; run it 2-3 times
-   ```
-
-   Sentry should now show an unresolved `TypeError` with about 10 events.
+2. Save the DSN in Devin as a secret named `SENTRY_DSN` on the [Secrets page](https://app.devin.ai/settings/secrets). Devin starts the server with it and sends the failing checkouts to Sentry.
 3. In Devin, open **Customize → Browse marketplace**, install the Sentry plugin, then click **Connect** under **Customize → MCPs** to finish the sign-in.
 4. Start a Devin session and paste this prompt instead, filling in your Sentry org and project slugs:
 
 ```text
 It's 3am and checkout is throwing 500s in production. You're on call.
 
-Use the Sentry MCP (org <your-sentry-org>, project <your-sentry-project>) to pull the top unresolved issue, its stack trace, and event breadcrumbs/tags. Then clone https://github.com/<you>/devin-demo-sentry-incident, reproduce the failure locally (`npm run traffic` replays production carts against a local server), find the root cause, and ship a PR with the fix plus a regression test that fails before and passes after. In the PR, include the Sentry issue ID, blast radius (which carts/codes are affected), and a short incident summary. Do not resolve the Sentry issue until the PR is up; then comment on it with the PR link.
+Clone https://github.com/<you>/devin-demo-sentry-incident, start the server with the `SENTRY_DSN` secret set, and run `npm run traffic` two or three times so the failing production checkouts reach Sentry. Then use the Sentry MCP (org <your-sentry-org>, project <your-sentry-project>) to pull the top unresolved issue, its stack trace, and event breadcrumbs/tags. Find the root cause from the Sentry issue, and ship a PR with the fix plus a regression test that fails before and passes after. In the PR, include the Sentry issue ID, blast radius (which carts/codes are affected), and a short incident summary. Do not resolve the Sentry issue until the PR is up; then comment on it with the PR link.
 ```
