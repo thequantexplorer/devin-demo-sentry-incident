@@ -1,0 +1,19 @@
+{
+  "name": "acme-checkout-api",
+  "version": "3.2.0",
+  "private": true,
+  "description": "Acme checkout: carts, promo codes, gift cards, order totals",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "traffic": "node scripts/traffic.js"
+  },
+  "dependencies": {
+    "@sentry/node": "^8.55.0",
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
+  }
+}
