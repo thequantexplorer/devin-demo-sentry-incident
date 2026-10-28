@@ -20,7 +20,8 @@ function giftCardCredit(code, amountCents) {
   if (!code) return 0;
   const card = giftCards[code];
   if (!card) throw Object.assign(new Error('unknown gift card'), { status: 400 });
-  return Math.min(card.balance.amountCents, amountCents);
+  const balanceCents = card.balance?.amountCents ?? 0;
+  return Math.min(balanceCents, amountCents);
 }
 
 function shipping(amountCents) {
