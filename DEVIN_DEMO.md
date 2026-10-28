@@ -9,7 +9,7 @@ More demos: [devin-advanced-demos](https://github.com/thequantexplorer/devin-adv
 ## Set it up
 
 1. Click **Use this template → Create a new repository** (or fork it) into your own GitHub account or org.
-2. In Devin, open **Settings → Integrations → GitHub** and make sure Devin can access the new repository.
+2. In Devin, open [**Settings → Connections → GitHub**](https://app.devin.ai/settings/connections/github) and make sure Devin can access the new repository.
 3. Create a free [Sentry](https://sentry.io) project (platform: Node.js) and copy its DSN.
 4. Generate a real production-style incident from your laptop:
 
@@ -20,7 +20,7 @@ More demos: [devin-advanced-demos](https://github.com/thequantexplorer/devin-adv
    ```
 
    Sentry should now show an unresolved `TypeError` with about 10 events.
-5. In Devin, connect Sentry from the MCP marketplace (or Plugins) and finish the OAuth sign-in.
+5. In Devin, open **Customize → Browse marketplace**, install the Sentry plugin, then click **Connect** under **Customize → MCPs** to finish the sign-in.
 
 ## Prompt
 
